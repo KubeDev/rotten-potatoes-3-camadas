@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+  rotten-potatoes.api:
+    image: fabricioveronez/rotten-potatoes-api
+    networks:
+      - rotten_net
+    build:
+      context: .
+      dockerfile: Rotten-Potatoes.Api/Dockerfile
+    environment:
+      ConnectionStrings__DefaultConnection: "Host=postgree;Database=rotten;Username=rotten;Password=Passw0rd2023!"
+      ASPNETCORE_HTTP_PORTS: "8080"
+    ports:
+      - "8080:8080"
+
+  postgree:
+    image: postgres:latest
+    ports: 
+      - "5432:5432"
+    networks: 
+      - rotten_net
+    environment:
+      POSTGRES_USER: rotten
+      POSTGRES_PASSWORD: Passw0rd2023!
+      POSTGRES_DB: rotten
+
+networks:
+  rotten_net:
+    driver: bridge

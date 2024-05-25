@@ -1,0 +1,6 @@
+@Rotten_Potatoes.Api_HostAddress = http://localhost:5145
+
+GET {{Rotten_Potatoes.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
